@@ -1,0 +1,21 @@
+{
+  "name": "Basic agent smoke evaluation",
+  "cases": [
+    {
+      "id": "greeting",
+      "input": {"message": "Say hello in one short sentence."},
+      "assertions": [
+        {"type": "contains", "value": "hello"},
+        {"type": "max_steps", "value": 8}
+      ]
+    },
+    {
+      "id": "tool-selection",
+      "input": {"message": "Read README.md and summarize its purpose."},
+      "assertions": [
+        {"type": "tool_called", "value": "read_file"},
+        {"type": "max_cost_usd", "value": 0.05}
+      ]
+    }
+  ]
+}

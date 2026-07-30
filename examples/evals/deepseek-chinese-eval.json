@@ -1,0 +1,61 @@
+{
+  "name": "DeepSeek 中文能力评测",
+  "description": "针对 Input → Chat Model → Output 三节点图，评测 DeepSeek 的事实正确性、数字抽取、格式遵循与中文作答能力。断言只匹配回答正文，不依赖 provider/model 元数据。",
+  "cases": [
+    {
+      "id": "capital-fact",
+      "name": "首都-事实正确性",
+      "input": "中国的首都是哪座城市？请只回答城市名称。",
+      "expected": "北京",
+      "assertions": [
+        {"type": "contains", "value": "北京"}
+      ]
+    },
+    {
+      "id": "days-number",
+      "name": "数字-抽取",
+      "input": "平年一年有多少天？请在回答中给出具体数字。",
+      "expected": "365",
+      "assertions": [
+        {"type": "regex", "value": "36[56]"}
+      ]
+    },
+    {
+      "id": "water-formula",
+      "name": "化学式-格式",
+      "input": "水的化学式是什么？请给出化学式。",
+      "expected": "H2O / H₂O",
+      "assertions": [
+        {"type": "regex", "value": "H[₂2]O"}
+      ]
+    },
+    {
+      "id": "answer-in-chinese",
+      "name": "语言约束-中文作答",
+      "input": "Explain what photosynthesis is in one short sentence. Answer in Chinese.",
+      "expected": "回答应为中文",
+      "assertions": [
+        {"type": "regex", "value": "[\\u4e00-\\u9fa5]"}
+      ]
+    },
+    {
+      "id": "format-tag-multi",
+      "name": "格式遵循-末尾标记(多断言)",
+      "input": "用一句话说明长城的主要用途，并在句子末尾加上标记：(已回答)",
+      "expected": "包含'长城'且以(已回答)结尾",
+      "assertions": [
+        {"type": "contains", "value": "长城"},
+        {"type": "regex", "value": "\\(已回答\\)"}
+      ]
+    },
+    {
+      "id": "non-empty-envelope",
+      "name": "输出封套-json_schema",
+      "input": "请用一句话介绍你自己。",
+      "expected": "输出对象含非空 text 字段（需 Input→Chat Model→Output 图）",
+      "assertions": [
+        {"type": "json_schema", "value": {"type": "object", "required": ["text"], "properties": {"text": {"type": "string", "minLength": 1}}}}
+      ]
+    }
+  ]
+}

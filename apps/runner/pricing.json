@@ -1,0 +1,48 @@
+{
+  "version": "2026-07-17",
+  "currency": "USD",
+  "unit": "per_million_tokens",
+  "sources": [
+    "https://platform.openai.com/docs/pricing",
+    "https://platform.openai.com/docs/models/gpt-4.1",
+    "https://platform.openai.com/docs/models/gpt-4.1-mini",
+    "https://platform.openai.com/docs/models/gpt-4.1-nano",
+    "https://platform.claude.com/docs/en/about-claude/pricing",
+    "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions"
+  ],
+  "models": [
+    {
+      "provider": "openai",
+      "model": "gpt-4.1-2025-04-14",
+      "input_usd": 2.0,
+      "cached_input_usd": 0.5,
+      "output_usd": 8.0
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "input_usd": 0.4,
+      "cached_input_usd": 0.1,
+      "output_usd": 1.6
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-4.1-nano-2025-04-14",
+      "input_usd": 0.1,
+      "cached_input_usd": 0.025,
+      "output_usd": 0.4
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-20250929",
+      "input_usd": 3.0,
+      "output_usd": 15.0
+    },
+    {
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5-20251001",
+      "input_usd": 1.0,
+      "output_usd": 5.0
+    }
+  ]
+}
